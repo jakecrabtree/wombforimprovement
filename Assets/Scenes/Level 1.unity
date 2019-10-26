@@ -867,7 +867,7 @@ GameObject:
   m_Component:
   - component: {fileID: 659089119}
   - component: {fileID: 659089118}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Goal
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
