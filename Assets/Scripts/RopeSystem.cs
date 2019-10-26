@@ -51,7 +51,6 @@ public class RopeSystem : MonoBehaviour
         else
         {
             setDistance = true;
-            playerController.isSwinging = false;
         }
         playerController.ropeHook = ropePositions.Last();
         // 1
@@ -205,7 +204,7 @@ public class RopeSystem : MonoBehaviour
                 ropeLength += Vector2.Distance(ropePositions[i], ropePositions[i + 1]);
             }
         }
-        //Debug.Log(ropePositions.Count);
+        Debug.Log(ropePositions.Count);
         foreach (Vector3 position in ropePositions)
         {
             //Debug.Log(position);
