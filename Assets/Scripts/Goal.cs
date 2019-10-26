@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+private bool activated = false;
+    void OnTriggerEnter2D(Collider2D collider){
+        activated = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public bool Activated{
+        get{return activated;}
     }
 }

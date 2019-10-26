@@ -9,8 +9,10 @@ public class GameController : MonoBehaviour
     [SerializeField] private InputController io;
     [SerializeField] private PlayerController player;
     [SerializeField] private float timeLeft;
+    [SerializeField] private Goal goal;
 
     private List<Nuke> nukes;
+   
 
     
     void Start()
@@ -34,6 +36,7 @@ public class GameController : MonoBehaviour
         player.OnUpdate(io);
         HandleNukeActivations();
         HandleRestarts();
+        HandleGoalReached();
     }
 
     private void FixedUpdate()
@@ -57,6 +60,12 @@ public class GameController : MonoBehaviour
             if(nuke.Activated){
                 Debug.Log("Nuke Activated");
             }
+        }
+    }
+
+    private void HandleGoalReached(){
+        if(goal.Activated){
+            Debug.Log("You win");
         }
     }
 }
