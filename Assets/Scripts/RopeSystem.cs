@@ -27,7 +27,10 @@ public class RopeSystem : MonoBehaviour
     public float climbSpeed = 3f;
     private bool isColliding;
 
-
+    private float maxRopeLength = 10;
+    private float ropeLength;
+    private float jointDist = 0f;
+    private bool setDistance = true;
 
 
     void Awake()
@@ -60,8 +63,15 @@ public class RopeSystem : MonoBehaviour
         }
         else
         {
-            playerController.isSwinging = true;
-            playerController.ropeHook = ropePositions.Last(); playerController.isSwinging = true;
+            if(ropeLength >= maxRopeLength)
+            {
+                playerController.isSwinging = true;
+            }
+            else
+            {
+                setDistance = true;
+                playerController.isSwinging = false;
+            }
             playerController.ropeHook = ropePositions.Last();
             crosshairSprite.enabled = false;
             // 1
@@ -95,10 +105,18 @@ public class RopeSystem : MonoBehaviour
             }
 
         }
+        if (ropeLength >= maxRopeLength)
+        {
+            if(setDistance == true)
+            {
+                ropeJoint.distance = jointDist;
+                setDistance = false;
+            }
+            ropeJoint.enabled = true;
+        }
         HandleInput(aimDirection);
         UpdateRopePositions();
         HandleRopeLength();
-
         HandleRopeUnwrap();
 
     }
@@ -134,8 +152,6 @@ public class RopeSystem : MonoBehaviour
                     // Jump slightly to distance the player a little from the ground after grappling to something.
                     transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 2f), ForceMode2D.Impulse);
                     ropePositions.Add(hit.point);
-                    ropeJoint.distance = Vector2.Distance(playerPosition, hit.point);
-                    ropeJoint.enabled = true;
                     ropeHingeAnchorSprite.enabled = true;
                 }
             }
@@ -243,6 +259,10 @@ public class RopeSystem : MonoBehaviour
     }
     private void HandleRopeLength()
     {
+        if(ropePositions.Count > 0)
+        {
+            jointDist = Vector2.Distance(transform.position, ropePositions.Last());
+        }
         // 1
         if (Input.GetKey("z") == true && ropeAttached && !isColliding)
         {
@@ -252,6 +272,21 @@ public class RopeSystem : MonoBehaviour
         {
             ropeJoint.distance += Time.deltaTime * climbSpeed;
         }
+        ropeLength = 0;
+        ropeLength += jointDist;
+        if (ropePositions.Count > 1)
+        {
+            for (int i = 0; i < ropePositions.Count - 1; i++)
+            {
+                ropeLength += Vector2.Distance(ropePositions[i], ropePositions[i + 1]);
+            }
+        }
+        //Debug.Log(ropePositions.Count);
+        foreach (Vector3 position in ropePositions)
+        {
+            //Debug.Log(position);
+        }
+       //Debug.Log(ropeLength);
     }
     void OnTriggerStay2D(Collider2D colliderStay)
     {
