@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        
         if (jumpTime < jumpWindow && prevJumpVelocity > 0 && rb.velocity.y == 0)
         {
             jumpTime = jumpWindow;
