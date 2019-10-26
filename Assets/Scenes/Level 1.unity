@@ -274,8 +274,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &299963770
-BoxCollider2D:
+--- !u!60 &299963770
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -297,9 +297,12 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 6, y: 6}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -3, y: 3}
+      - {x: -3, y: -3}
+      - {x: 3, y: -3}
+      - {x: 3, y: 3}
 --- !u!212 &299963771
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -606,6 +609,8 @@ MonoBehaviour:
   jumping: 0
   jumpWindow: 0.2
   isSwinging: 0
+  ropeHook: {x: 0, y: 0}
+  swingForce: 4
 --- !u!232 &570931213
 DistanceJoint2D:
   m_ObjectHideFlags: 0
@@ -646,6 +651,7 @@ MonoBehaviour:
   ropeLayerMask:
     serializedVersion: 2
     m_Bits: 3328
+  climbSpeed: 3
 --- !u!120 &570931215
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -686,6 +692,7 @@ LineRenderer:
   m_SortingOrder: 3
   m_Positions:
   - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
@@ -760,8 +767,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &634634477
-BoxCollider2D:
+--- !u!60 &634634477
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -783,9 +790,12 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 6, y: 6}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -3, y: 3}
+      - {x: -3, y: -3}
+      - {x: 3, y: -3}
+      - {x: 3, y: 3}
 --- !u!212 &634634478
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -986,8 +996,8 @@ Transform:
   m_Father: {fileID: 24344922}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1251308363
-BoxCollider2D:
+--- !u!60 &1251308363
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1009,9 +1019,12 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 6, y: 6}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -3, y: 3}
+      - {x: -3, y: -3}
+      - {x: 3, y: -3}
+      - {x: 3, y: 3}
 --- !u!212 &1251308364
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1159,8 +1172,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &1415806197
-BoxCollider2D:
+--- !u!60 &1415806197
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1182,9 +1195,12 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 6, y: 6}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -3, y: 3}
+      - {x: -3, y: -3}
+      - {x: 3, y: -3}
+      - {x: 3, y: 3}
 --- !u!212 &1415806198
 SpriteRenderer:
   m_ObjectHideFlags: 0

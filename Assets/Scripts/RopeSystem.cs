@@ -29,9 +29,10 @@ public class RopeSystem : MonoBehaviour
 
 
 
+
     void Awake()
     {
-        
+
         ropeJoint.enabled = false;
         playerPosition = transform.position;
         ropeHingeAnchorRb = ropeHingeAnchor.GetComponent<Rigidbody2D>();
@@ -44,7 +45,7 @@ public class RopeSystem : MonoBehaviour
         var worldMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
         var facingDirection = worldMousePosition - transform.position;
         var aimAngle = Mathf.Atan2(facingDirection.y, facingDirection.x);
-        if(aimAngle < 0f)
+        if (aimAngle < 0f)
         {
             aimAngle = Mathf.PI * 2 + aimAngle;
         }
@@ -97,7 +98,9 @@ public class RopeSystem : MonoBehaviour
         HandleInput(aimDirection);
         UpdateRopePositions();
         HandleRopeLength();
+
         HandleRopeUnwrap();
+
     }
     private void SetCrosshairPosition(float aimAngle)
     {
@@ -225,7 +228,7 @@ public class RopeSystem : MonoBehaviour
             }
         }
     }
- 
+
     // 1
     private Vector2 GetClosestColliderPointFromRaycastHit(RaycastHit2D hit, PolygonCollider2D polyCollider)
     {
@@ -261,6 +264,11 @@ public class RopeSystem : MonoBehaviour
     }
     private void HandleRopeUnwrap()
     {
+        if (ropePositions.Count <= 1)
+        {
+            return;
+        }
+
         // Hinge = next point up from the player position
         // Anchor = next point up from the Hinge
         // Hinge Angle = Angle between anchor and hinge
@@ -282,10 +290,7 @@ public class RopeSystem : MonoBehaviour
         var playerDir = playerPosition - anchorPosition;
         // 8
         var playerAngle = Vector2.Angle(anchorPosition, playerDir);
-        if (ropePositions.Count <= 1)
-        {
-            return;
-        }
+
 
         if (!wrapPointsLookup.ContainsKey(hingePosition))
         {
