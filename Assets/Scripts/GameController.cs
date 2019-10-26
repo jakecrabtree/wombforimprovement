@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private InputController io;
     [SerializeField] private PlayerController player;
+    [SerializeField] private float timeLeft;
     
     void Start()
     {
@@ -15,6 +16,12 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+        timeLeft -= Time.deltaTime;
+        if (timeLeft < 0)
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
+
         player.OnUpdate(io);
     }
 
