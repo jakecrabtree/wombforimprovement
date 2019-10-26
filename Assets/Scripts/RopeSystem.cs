@@ -15,7 +15,6 @@ public class RopeSystem : MonoBehaviour
 
     public LineRenderer ropeRenderer;
     public LayerMask ropeLayerMask;
-    private float ropeMaxCastDistance = 20f;
     private List<Vector2> ropePositions = new List<Vector2>();
 
     private bool distanceSet;
@@ -51,7 +50,6 @@ public class RopeSystem : MonoBehaviour
         else
         {
             setDistance = true;
-            playerController.isSwinging = false;
         }
         playerController.ropeHook = ropePositions.Last();
         // 1
@@ -68,15 +66,6 @@ public class RopeSystem : MonoBehaviour
                 if (colliderWithVertices != null)
                 {
                     var closestPointToHit = GetClosestColliderPointFromRaycastHit(playerToCurrentNextHit, colliderWithVertices);
-
-                    // 4
-                    if (wrapPointsLookup.ContainsKey(closestPointToHit))
-                    {
-                        ResetRope();
-                        return;
-                    }
-
-                    // 5
                     ropePositions.Add(closestPointToHit);
                     wrapPointsLookup.Add(closestPointToHit, 0);
                     distanceSet = false;
@@ -102,18 +91,7 @@ public class RopeSystem : MonoBehaviour
     }
 
     // 6
-    private void ResetRope()
-    {
-        ropeJoint.enabled = false;
-        playerController.isSwinging = false;
-        ropeRenderer.positionCount = 2;
-        ropeRenderer.SetPosition(0, transform.position);
-        ropeRenderer.SetPosition(1, transform.position);
-        ropePositions.Clear();
-        ropeHingeAnchorSprite.enabled = false;
-        //probably won't need
-        wrapPointsLookup.Clear();
-    }
+
     private void UpdateRopePositions()
     {
         // 2
@@ -205,7 +183,7 @@ public class RopeSystem : MonoBehaviour
                 ropeLength += Vector2.Distance(ropePositions[i], ropePositions[i + 1]);
             }
         }
-        //Debug.Log(ropePositions.Count);
+        Debug.Log(ropePositions.Count);
         foreach (Vector3 position in ropePositions)
         {
             //Debug.Log(position);
@@ -259,6 +237,7 @@ public class RopeSystem : MonoBehaviour
 
         if (playerAngle < hingeAngle)
         {
+            Debug.Log("angle too high");
             // 1
             if (wrapPointsLookup[hingePosition] == 1)
             {
