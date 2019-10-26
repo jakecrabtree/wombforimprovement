@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
         timeLeft -= Time.deltaTime;
         if (timeLeft < 0)
         {
-            Debug.Log("Timer Done");
+            //Debug.Log("Timer Done");
             // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour
     private void HandleNukeActivations()
     {
         foreach(Nuke nuke in nukes){
-            Debug.Log("yeet");
+            //Debug.Log("yeet");
             if(nuke.Activated){
                 Debug.Log("Nuke Activated");
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
