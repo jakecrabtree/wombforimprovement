@@ -643,7 +643,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ropeHingeAnchor: {fileID: 115804744}
   ropeJoint: {fileID: 570931213}
+<<<<<<< HEAD
   ropeAnchor: {fileID: 1974560073}
+=======
+  crosshair: {fileID: 1285084615}
+  crosshairSprite: {fileID: 1285084614}
+>>>>>>> parent of a7c39cd... still working on ropes
   playerController: {fileID: 570931212}
   ropeRenderer: {fileID: 570931215}
   ropeLayerMask:
@@ -1004,7 +1009,7 @@ MonoBehaviour:
   LeftKey: 97
   RightKey: 100
   ActionKey: 32
-  RestartKey: 0
+  RestartKey: 114
 --- !u!4 &1170627208
 Transform:
   m_ObjectHideFlags: 0
@@ -1271,7 +1276,6 @@ MonoBehaviour:
   io: {fileID: 1170627207}
   player: {fileID: 570931212}
   timeLeft: 0
-  goal: {fileID: 0}
 --- !u!4 &1521067438
 Transform:
   m_ObjectHideFlags: 0

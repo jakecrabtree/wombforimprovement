@@ -237,6 +237,7 @@ public class RopeSystem : MonoBehaviour
 
         if (playerAngle < hingeAngle)
         {
+            Debug.Log("angle too high");
             // 1
             if (wrapPointsLookup[hingePosition] == 1)
             {
