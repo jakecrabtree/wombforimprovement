@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 570931213}
   - component: {fileID: 570931214}
   - component: {fileID: 570931215}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -645,7 +645,7 @@ MonoBehaviour:
   ropeRenderer: {fileID: 570931215}
   ropeLayerMask:
     serializedVersion: 2
-    m_Bits: 3073
+    m_Bits: 3329
 --- !u!120 &570931215
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -689,7 +689,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.075
+    widthMultiplier: 0.25
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -859,7 +859,7 @@ GameObject:
   m_Component:
   - component: {fileID: 718321197}
   - component: {fileID: 718321198}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
