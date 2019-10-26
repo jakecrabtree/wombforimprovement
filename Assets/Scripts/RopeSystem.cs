@@ -22,7 +22,7 @@ public class RopeSystem : MonoBehaviour
     public float climbSpeed = 3f;
     private bool isColliding;
 
-    private float maxRopeLength = 10;
+    private float maxRopeLength = 5;
     private float ropeLength;
     private float jointDist = 0f;
     private bool setDistance = true;
@@ -43,12 +43,13 @@ public class RopeSystem : MonoBehaviour
     {
         playerPosition = transform.position;
 
-        if (ropeLength >= maxRopeLength)
+        if (ropeLength >= maxRopeLength && playerController.isGrounded == false)
         {
             playerController.isSwinging = true;
         }
         else
         {
+            playerController.isSwinging = false;
             setDistance = true;
         }
         playerController.ropeHook = ropePositions.Last();
@@ -82,6 +83,10 @@ public class RopeSystem : MonoBehaviour
                 setDistance = false;
             }
             ropeJoint.enabled = true;
+        }
+        else
+        {
+            ropeJoint.enabled = false;
         }
 
         UpdateRopePositions();
@@ -166,9 +171,16 @@ public class RopeSystem : MonoBehaviour
             jointDist = Vector2.Distance(transform.position, ropePositions.Last());
         }
         // 1
-        if (Input.GetKey("z") == true && !isColliding)
+        if (Input.GetKey("z") == true)
         {
-            ropeJoint.distance -= Time.deltaTime * climbSpeed;
+            ropeJoint.enabled = false;
+            gameObject.GetComponent<Rigidbody2D>().simulated = false;
+            transform.position = Vector3.MoveTowards(transform.position, ropePositions.Last(), climbSpeed * Time.deltaTime);
+            //ropeJoint.distance -= Time.deltaTime * climbSpeed;
+        }
+        if (Input.GetKeyUp("z"))
+        {
+            gameObject.GetComponent<Rigidbody2D>().simulated = true;
         }
         else if (Input.GetKey("x") == true)
         {
@@ -183,21 +195,6 @@ public class RopeSystem : MonoBehaviour
                 ropeLength += Vector2.Distance(ropePositions[i], ropePositions[i + 1]);
             }
         }
-        Debug.Log(ropePositions.Count);
-        foreach (Vector3 position in ropePositions)
-        {
-            //Debug.Log(position);
-        }
-        //Debug.Log(ropeLength);
-    }
-    void OnTriggerStay2D(Collider2D colliderStay)
-    {
-        isColliding = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D colliderOnExit)
-    {
-        isColliding = false;
     }
     private void HandleRopeUnwrap()
     {
@@ -237,7 +234,6 @@ public class RopeSystem : MonoBehaviour
 
         if (playerAngle < hingeAngle)
         {
-            Debug.Log("angle too high");
             // 1
             if (wrapPointsLookup[hingePosition] == 1)
             {
@@ -280,7 +276,6 @@ public class RopeSystem : MonoBehaviour
         }
         ropeJoint.distance = Vector2.Distance(transform.position, newAnchorPosition);
         distanceSet = true;
-
     }
 
 }

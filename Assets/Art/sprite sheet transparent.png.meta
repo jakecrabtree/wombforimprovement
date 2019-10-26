@@ -1,7 +1,43 @@
 fileFormatVersion: 2
 guid: f1bbd082ec371234b985741e4307ed32
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -3991283383595096070
+    second: sprite sheet transparent_0
+  - first:
+      213: 4930388545350035350
+    second: sprite sheet transparent_1
+  - first:
+      213: -6104046756735857274
+    second: sprite sheet transparent_2
+  - first:
+      213: -6385366394446899876
+    second: sprite sheet transparent_3
+  - first:
+      213: 7065972431105651947
+    second: sprite sheet transparent_4
+  - first:
+      213: -5597522054407262409
+    second: sprite sheet transparent_5
+  - first:
+      213: 1685096630374965531
+    second: sprite sheet transparent_6
+  - first:
+      213: -813182761182218425
+    second: sprite sheet transparent_7
+  - first:
+      213: 4932990952044207760
+    second: sprite sheet transparent_8
+  - first:
+      213: -6382316723014537988
+    second: sprite sheet transparent_9
+  - first:
+      213: 8622574338415492631
+    second: sprite sheet transparent_10
+  - first:
+      213: 2956816968386259631
+    second: sprite sheet transparent_11
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,7 +76,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -70,9 +106,297 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: sprite sheet transparent_0
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 2947
+        width: 852
+        height: 765
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef236647c04af42f8a53264f8c3c61df
+      internalID: -3991283383595096070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite sheet transparent_1
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 2949
+        width: 852
+        height: 765
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36e638cba65ac49ea982ea8cea2e0c03
+      internalID: 4930388545350035350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite sheet transparent_2
+      rect:
+        serializedVersion: 2
+        x: 1905
+        y: 2939
+        width: 1039
+        height: 861
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1e9d0e6656bd40a8a391e69b3c1d8be
+      internalID: -6104046756735857274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite sheet transparent_3
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 1992
+        width: 767
+        height: 774
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4610443e44ca845b78afb22017851955
+      internalID: -6385366394446899876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite sheet transparent_4
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 1995
+        width: 767
+        height: 773
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b22a5dfada91542bb882001fdb64f664
+      internalID: 7065972431105651947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite sheet transparent_5
+      rect:
+        serializedVersion: 2
+        x: 1908
+        y: 2057
+        width: 1040
+        height: 861
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22d68ee390a33414eb7fec40c17161f1
+      internalID: -5597522054407262409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite sheet transparent_6
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 1106
+        width: 739
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ccd18b76a4af4ca6b2eefdc7b28c2c4
+      internalID: 1685096630374965531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite sheet transparent_7
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 1108
+        width: 739
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 257bbad012f51417ba5c6b9950f1cb0b
+      internalID: -813182761182218425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite sheet transparent_8
+      rect:
+        serializedVersion: 2
+        x: 2219
+        y: 1018
+        width: 452
+        height: 1021
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5608a82006dc40a7969305e0574c4a0
+      internalID: 4932990952044207760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite sheet transparent_9
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 89
+        width: 765
+        height: 762
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8563b1758c3b54ea9aa13b482f7eb759
+      internalID: -6382316723014537988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite sheet transparent_10
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 91
+        width: 767
+        height: 762
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76d4c524693484ccaa3f0f464407f5f5
+      internalID: 8622574338415492631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite sheet transparent_11
+      rect:
+        serializedVersion: 2
+        x: 2192
+        y: 95
+        width: 429
+        height: 876
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 905b8a14965cc42e190e1d788b9f0673
+      internalID: 2956816968386259631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
