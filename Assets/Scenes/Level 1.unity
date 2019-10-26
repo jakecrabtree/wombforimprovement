@@ -570,9 +570,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: dd9be018b48444e4a8bd7005955a1dd4, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -683,7 +683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpForce: 3
+  jumpForce: 5
   isGrounded: 0
   groundCheck: {fileID: 718321197}
   checkRadius: 0.1
@@ -734,7 +734,7 @@ MonoBehaviour:
   ropeRenderer: {fileID: 570931215}
   ropeLayerMask:
     serializedVersion: 2
-    m_Bits: 3328
+    m_Bits: 11520
   climbSpeed: 3
 --- !u!120 &570931215
 LineRenderer:
@@ -1616,7 +1616,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1974560073}
   - component: {fileID: 1974560072}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: RopeAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
