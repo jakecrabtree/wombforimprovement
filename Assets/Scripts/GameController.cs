@@ -8,16 +8,13 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private InputController io;
     [SerializeField] private PlayerController player;
-    [SerializeField] private float timeLeft;
     [SerializeField] private Goal goal;
     [SerializeField] private CameraFollow cam;
+
+    [SerializeField] private CountDownTimer timer;
     private List<Nuke> nukes;
     private List<Switch> switches;
 
-    
-   
-
-    
     void Start()
     {
         nukes = new List<Nuke>();
@@ -41,7 +38,7 @@ public class GameController : MonoBehaviour
         HandleRestarts();
         HandleGoalReached();
         HandleSwitches();
-        // HandleClock();
+        HandleTimer();
     }
 
     private void FixedUpdate()
@@ -51,11 +48,11 @@ public class GameController : MonoBehaviour
 
     private void HandleRestarts(){
         if(io.RestartKeyPressed){
-            Restart();
+            RestartLevel();
         }
     }
 
-    private void Restart(){
+    private void RestartLevel(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -74,12 +71,11 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void HandleClock(){
-        timeLeft -= Time.deltaTime;
-        if (timeLeft < 0)
-        {
-            Debug.Log("Timer Done");
-            Restart();
+    private void HandleTimer(){
+        timer.OnUpdate();
+
+        if(timer.Done){
+            RestartLevel();
         }
     }
 
