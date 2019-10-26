@@ -9,8 +9,10 @@ public class GameController : MonoBehaviour
     [SerializeField] private InputController io;
     [SerializeField] private PlayerController player;
     [SerializeField] private float timeLeft;
+    [SerializeField] private Goal goal;
 
     private List<Nuke> nukes;
+   
 
     
     void Start()
@@ -33,6 +35,8 @@ public class GameController : MonoBehaviour
 
         player.OnUpdate(io);
         HandleNukeActivations();
+        HandleRestarts();
+        HandleGoalReached();
     }
 
     private void FixedUpdate()
@@ -40,14 +44,28 @@ public class GameController : MonoBehaviour
         player.OnFixedUpdate(io);
     }
 
+    private void HandleRestarts(){
+        if(io.RestartKeyPressed){
+            Restart();
+        }
+    }
+
+    private void Restart(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     private void HandleNukeActivations()
     {
         foreach(Nuke nuke in nukes){
-            //Debug.Log("yeet");
             if(nuke.Activated){
                 Debug.Log("Nuke Activated");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
+        }
+    }
+
+    private void HandleGoalReached(){
+        if(goal.Activated){
+            Debug.Log("You win");
         }
     }
 }
