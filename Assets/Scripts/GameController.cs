@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour
 
         player.OnUpdate(io);
         HandleNukeActivations();
+        HandleRestarts();
     }
 
     private void FixedUpdate()
@@ -53,7 +54,6 @@ public class GameController : MonoBehaviour
     private void HandleNukeActivations()
     {
         foreach(Nuke nuke in nukes){
-            Debug.Log("yeet");
             if(nuke.Activated){
                 Debug.Log("Nuke Activated");
             }

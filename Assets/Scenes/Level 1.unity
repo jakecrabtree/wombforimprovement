@@ -950,6 +950,7 @@ MonoBehaviour:
   LeftKey: 97
   RightKey: 100
   ActionKey: 32
+  RestartKey: 114
 --- !u!4 &1170627208
 Transform:
   m_ObjectHideFlags: 0
