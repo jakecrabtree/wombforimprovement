@@ -645,7 +645,7 @@ MonoBehaviour:
   ropeRenderer: {fileID: 570931215}
   ropeLayerMask:
     serializedVersion: 2
-    m_Bits: 3329
+    m_Bits: 3328
 --- !u!120 &570931215
 LineRenderer:
   m_ObjectHideFlags: 0

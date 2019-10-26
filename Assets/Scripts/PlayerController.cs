@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private float prevJumpVelocity;
 
     public bool isSwinging = false;
+    public Vector2 ropeHook;
+    public float swingForce = 4f;
 
     private void Start()
     {
@@ -59,18 +61,71 @@ public class PlayerController : MonoBehaviour
     {
         whatIsGround = LayerMask.GetMask("Ground");
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-
         moveInput = io.GetHorizontalDirection();
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
         
-        if (io.ActionKeyHeld && jumpTime <= jumpWindow && jumping == true)
+
+        if (io.GetHorizontalDirection() < 0f || io.GetHorizontalDirection() > 0f)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            jumpTime += Time.deltaTime;
+            //animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
+            //playerSprite.flipX = horizontalInput < 0f;
+            if (isSwinging)
+            {
+                //animator.SetBool("IsSwinging", true);
+
+                // 1 - Get a normalized direction vector from the player to the hook point
+                var playerToHookDirection = (ropeHook - (Vector2)transform.position).normalized;
+
+                // 2 - Inverse the direction to get a perpendicular direction
+                Vector2 perpendicularDirection;
+                if (io.GetHorizontalDirection() < 0)
+                {
+                    perpendicularDirection = new Vector2(-playerToHookDirection.y, playerToHookDirection.x);
+                    var leftPerpPos = (Vector2)transform.position - perpendicularDirection * -2f;
+                    Debug.DrawLine(transform.position, leftPerpPos, Color.green, 0f);
+                }
+                else
+                {
+                    perpendicularDirection = new Vector2(playerToHookDirection.y, -playerToHookDirection.x);
+                    var rightPerpPos = (Vector2)transform.position + perpendicularDirection * 2f;
+                    Debug.DrawLine(transform.position, rightPerpPos, Color.green, 0f);
+                }
+
+                var force = perpendicularDirection * swingForce;
+                rb.AddForce(force, ForceMode2D.Force);
+            }
+            else
+            {
+                //animator.SetBool("IsSwinging", false);
+                if (groundCheck)
+                {
+                    rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+                }
+            }
         }
         else
         {
-            jumping = false;
+            //animator.SetBool("IsSwinging", false);
+            //animator.SetFloat("Speed", 0f);
+        }
+
+        if (!isSwinging)
+        {
+            if (!groundCheck) return;
+
+            if (io.ActionKeyHeld && jumpTime <= jumpWindow && jumping == true)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                jumpTime += Time.deltaTime;
+            }
+            else
+            {
+                jumping = false;
+            }
+
+            if (jumping)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            }
         }
     }
 }
