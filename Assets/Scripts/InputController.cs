@@ -19,6 +19,7 @@ public class InputController : MonoBehaviour
    private bool rightKeyHeld;
 
    private bool actionKeyPressed;
+   private bool actionKeyHeld;
    private bool upKeyPressed;
 
    private bool leftMouseButtonDown;
@@ -46,6 +47,7 @@ public class InputController : MonoBehaviour
       rightKeyHeld = Input.GetKey(RightKey);
 
       actionKeyPressed = Input.GetKeyDown(ActionKey);
+      actionKeyHeld = Input.GetKey(ActionKey);
       upKeyPressed = Input.GetKeyDown(UpKey);
 
       leftMouseButtonDown = Input.GetMouseButtonDown(0);
@@ -98,6 +100,18 @@ public class InputController : MonoBehaviour
 
    public bool UpKeyPressed{
       get{return upKeyPressed;}
+   }
+
+   public bool DownKeyHeld
+   {
+      get { return downKeyHeld;}
+   }
+
+   public bool ActionKeyHeld
+   {
+      get{
+         return actionKeyHeld;
+      }
    }
 
    public bool LeftMouseButtonHeld{
