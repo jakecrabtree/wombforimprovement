@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -9,21 +10,29 @@ public class GameController : MonoBehaviour
     [SerializeField] private PlayerController player;
     [SerializeField] private float timeLeft;
 
+    private List<Nuke> nukes;
+
     
     void Start()
     {
-        
+        nukes = new List<Nuke>();
+        Nuke[] nuk = FindObjectsOfType<Nuke>();
+        foreach(Nuke nuke in nuk){
+            nukes.Add(nuke);
+        }
     }
 
     void Update()
     {
         timeLeft -= Time.deltaTime;
-        /*if (timeLeft < 0)
+        if (timeLeft < 0)
         {
-            Application.LoadLevel(Application.loadedLevel);
-        }*/
+            Debug.Log("Timer Done");
+            // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
         player.OnUpdate(io);
+        HandleNukeActivations();
     }
 
     private void FixedUpdate()
@@ -31,8 +40,14 @@ public class GameController : MonoBehaviour
         player.OnFixedUpdate(io);
     }
 
-    private void HandleNukeCollisions()
+    private void HandleNukeActivations()
     {
-
+        foreach(Nuke nuke in nukes){
+            Debug.Log("yeet");
+            if(nuke.Activated){
+                Debug.Log("Nuke Activated");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
     }
 }
