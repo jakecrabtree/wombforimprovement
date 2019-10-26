@@ -1069,6 +1069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   io: {fileID: 1170627207}
   player: {fileID: 570931212}
+  timeLeft: 5
 --- !u!4 &1521067438
 Transform:
   m_ObjectHideFlags: 0
