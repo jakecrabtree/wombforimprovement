@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private Goal goal;
 
     private List<Nuke> nukes;
+    private List<Switch> switches;
    
 
     
@@ -22,21 +23,22 @@ public class GameController : MonoBehaviour
         foreach(Nuke nuke in nuk){
             nukes.Add(nuke);
         }
+
+        switches = new List<Switch>();
+        Switch[] swi = FindObjectsOfType<Switch>();
+        foreach(Switch _switch in swi){
+            switches.Add(_switch);
+        }
     }
 
     void Update()
     {
-        timeLeft -= Time.deltaTime;
-        if (timeLeft < 0)
-        {
-            //Debug.Log("Timer Done");
-            // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
         player.OnUpdate(io);
         HandleNukeActivations();
         HandleRestarts();
         HandleGoalReached();
+        HandleSwitches();
+        // HandleClock();
     }
 
     private void FixedUpdate()
@@ -66,6 +68,24 @@ public class GameController : MonoBehaviour
     private void HandleGoalReached(){
         if(goal.Activated){
             Debug.Log("You win");
+        }
+    }
+
+    private void HandleClock(){
+        timeLeft -= Time.deltaTime;
+        if (timeLeft < 0)
+        {
+            Debug.Log("Timer Done");
+            Restart();
+        }
+    }
+
+    private void HandleSwitches(){
+        foreach(Switch _switch in switches){
+            if(_switch.Activated){
+                Debug.Log("unlock");
+                _switch.Door.Unlock();
+            }
         }
     }
 }
