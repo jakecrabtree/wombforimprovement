@@ -7,12 +7,8 @@ public class RopeSystem : MonoBehaviour
 {
     public GameObject ropeHingeAnchor;
     public DistanceJoint2D ropeJoint;
-    //Eventually need to get rid of this.
-    public Transform crosshair;
-    public SpriteRenderer crosshairSprite;
+    public Transform ropeAnchor;
     public PlayerController playerController;
-    //Eventually won't be used
-    private bool ropeAttached;
     private Vector2 playerPosition;
     private Rigidbody2D ropeHingeAnchorRb;
     private SpriteRenderer ropeHingeAnchorSprite;
@@ -35,146 +31,80 @@ public class RopeSystem : MonoBehaviour
 
     void Awake()
     {
-
         ropeJoint.enabled = false;
         playerPosition = transform.position;
         ropeHingeAnchorRb = ropeHingeAnchor.GetComponent<Rigidbody2D>();
         ropeHingeAnchorSprite = ropeHingeAnchor.GetComponent<SpriteRenderer>();
+        ropePositions.Add(ropeAnchor.position);
+        ropeJoint.distance = Vector2.Distance(transform.position, ropeAnchor.position);
+        ropeHingeAnchorSprite.enabled = true;
     }
 
     void Update()
     {
-        //Used for crosshair, eventually won't need this
-        var worldMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
-        var facingDirection = worldMousePosition - transform.position;
-        var aimAngle = Mathf.Atan2(facingDirection.y, facingDirection.x);
-        if (aimAngle < 0f)
-        {
-            aimAngle = Mathf.PI * 2 + aimAngle;
-        }
-
-        var aimDirection = Quaternion.Euler(0, 0, aimAngle * Mathf.Rad2Deg) * Vector2.right;
         playerPosition = transform.position;
 
-        if (!ropeAttached)
+        if (ropeLength >= maxRopeLength)
         {
-            playerController.isSwinging = false;
-            SetCrosshairPosition(aimAngle);
+            playerController.isSwinging = true;
         }
         else
         {
-            if(ropeLength >= maxRopeLength)
-            {
-                playerController.isSwinging = true;
-            }
-            else
-            {
-                setDistance = true;
-                playerController.isSwinging = false;
-            }
-            playerController.ropeHook = ropePositions.Last();
-            crosshairSprite.enabled = false;
-            // 1
-            if (ropePositions.Count > 0)
-            {
-                // 2
-                var lastRopePoint = ropePositions.Last();
-                var playerToCurrentNextHit = Physics2D.Raycast(playerPosition, (lastRopePoint - playerPosition).normalized, Vector2.Distance(playerPosition, lastRopePoint) - 0.1f, ropeLayerMask);
+            setDistance = true;
+            playerController.isSwinging = false;
+        }
+        playerController.ropeHook = ropePositions.Last();
+        // 1
+        if (ropePositions.Count > 0)
+        {
+            // 2
+            var lastRopePoint = ropePositions.Last();
+            var playerToCurrentNextHit = Physics2D.Raycast(playerPosition, (lastRopePoint - playerPosition).normalized, Vector2.Distance(playerPosition, lastRopePoint) - 0.1f, ropeLayerMask);
 
-                // 3
-                if (playerToCurrentNextHit)
+            // 3
+            if (playerToCurrentNextHit)
+            {
+                var colliderWithVertices = playerToCurrentNextHit.collider as PolygonCollider2D;
+                if (colliderWithVertices != null)
                 {
-                    var colliderWithVertices = playerToCurrentNextHit.collider as PolygonCollider2D;
-                    if (colliderWithVertices != null)
+                    var closestPointToHit = GetClosestColliderPointFromRaycastHit(playerToCurrentNextHit, colliderWithVertices);
+
+                    // 4
+                    if (wrapPointsLookup.ContainsKey(closestPointToHit))
                     {
-                        var closestPointToHit = GetClosestColliderPointFromRaycastHit(playerToCurrentNextHit, colliderWithVertices);
-
-                        // 4
-                        if (wrapPointsLookup.ContainsKey(closestPointToHit))
-                        {
-                            ResetRope();
-                            return;
-                        }
-
-                        // 5
-                        ropePositions.Add(closestPointToHit);
-                        wrapPointsLookup.Add(closestPointToHit, 0);
-                        distanceSet = false;
+                        ResetRope();
+                        return;
                     }
+
+                    // 5
+                    ropePositions.Add(closestPointToHit);
+                    wrapPointsLookup.Add(closestPointToHit, 0);
+                    distanceSet = false;
                 }
             }
+
 
         }
         if (ropeLength >= maxRopeLength)
         {
-            if(setDistance == true)
+            if (setDistance == true)
             {
                 ropeJoint.distance = jointDist;
                 setDistance = false;
             }
             ropeJoint.enabled = true;
         }
-        HandleInput(aimDirection);
+
         UpdateRopePositions();
         HandleRopeLength();
         HandleRopeUnwrap();
 
-    }
-    private void SetCrosshairPosition(float aimAngle)
-    {
-        if (!crosshairSprite.enabled)
-        {
-            crosshairSprite.enabled = true;
-        }
-        var x = transform.position.x + 1f * Mathf.Cos(aimAngle);
-        var y = transform.position.y + 1f * Mathf.Sin(aimAngle);
-
-        var crossHairPosition = new Vector3(x, y, 0);
-        crosshair.transform.position = crossHairPosition;
-    }
-    private void HandleInput(Vector2 aimDirection)
-    {
-        if (Input.GetMouseButton(0))
-        {
-            // 2
-            if (ropeAttached) return;
-            ropeRenderer.enabled = true;
-
-            var hit = Physics2D.Raycast(playerPosition, aimDirection, ropeMaxCastDistance, ropeLayerMask);
-
-            // 3
-            if (hit.collider != null)
-            {
-                ropeAttached = true;
-                if (!ropePositions.Contains(hit.point))
-                {
-                    // 4
-                    // Jump slightly to distance the player a little from the ground after grappling to something.
-                    transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 2f), ForceMode2D.Impulse);
-                    ropePositions.Add(hit.point);
-                    ropeHingeAnchorSprite.enabled = true;
-                }
-            }
-            // 5
-            else
-            {
-                ropeRenderer.enabled = false;
-                ropeAttached = false;
-                ropeJoint.enabled = false;
-            }
-        }
-
-        if (Input.GetMouseButton(1))
-        {
-            ResetRope();
-        }
     }
 
     // 6
     private void ResetRope()
     {
         ropeJoint.enabled = false;
-        ropeAttached = false;
         playerController.isSwinging = false;
         ropeRenderer.positionCount = 2;
         ropeRenderer.SetPosition(0, transform.position);
@@ -186,12 +116,6 @@ public class RopeSystem : MonoBehaviour
     }
     private void UpdateRopePositions()
     {
-        // 1
-        if (!ropeAttached)
-        {
-            return;
-        }
-
         // 2
         ropeRenderer.positionCount = ropePositions.Count + 1;
 
@@ -259,16 +183,16 @@ public class RopeSystem : MonoBehaviour
     }
     private void HandleRopeLength()
     {
-        if(ropePositions.Count > 0)
+        if (ropePositions.Count > 0)
         {
             jointDist = Vector2.Distance(transform.position, ropePositions.Last());
         }
         // 1
-        if (Input.GetKey("z") == true && ropeAttached && !isColliding)
+        if (Input.GetKey("z") == true && !isColliding)
         {
             ropeJoint.distance -= Time.deltaTime * climbSpeed;
         }
-        else if (Input.GetKey("x") == true && ropeAttached)
+        else if (Input.GetKey("x") == true)
         {
             ropeJoint.distance += Time.deltaTime * climbSpeed;
         }
@@ -286,7 +210,7 @@ public class RopeSystem : MonoBehaviour
         {
             //Debug.Log(position);
         }
-       //Debug.Log(ropeLength);
+        //Debug.Log(ropeLength);
     }
     void OnTriggerStay2D(Collider2D colliderStay)
     {
