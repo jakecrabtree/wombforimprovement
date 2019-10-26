@@ -12,6 +12,7 @@ public class InputController : MonoBehaviour
    [SerializeField] private KeyCode LeftKey;
    [SerializeField] private KeyCode RightKey;
    [SerializeField] private KeyCode ActionKey;
+   [SerializeField] private KeyCode RestartKey;
 
    private bool upKeyHeld;
    private bool downKeyHeld;
@@ -25,6 +26,8 @@ public class InputController : MonoBehaviour
    private bool leftMouseButtonDown;
    private bool leftMouseButtonUp;
    private bool leftMouseButtonHeld;
+
+   private bool restartKeyPressed;
 
    private bool rightMouseButtonDown;
    private bool rightMouseButtonUp;
@@ -41,6 +44,8 @@ public class InputController : MonoBehaviour
    // Mono Methods
    // ------------------------------------------------------
    void Update() {
+      restartKeyPressed = Input.GetKeyDown(RestartKey);
+
       upKeyHeld = Input.GetKey(UpKey);
       downKeyHeld = Input.GetKey(DownKey);
       leftKeyHeld = Input.GetKey(LeftKey);
@@ -94,6 +99,9 @@ public class InputController : MonoBehaviour
    // ------------------------------------------------------
    // Getters
    // ------------------------------------------------------
+   public bool RestartKeyPressed{
+      get{return restartKeyPressed;}
+   }
    public bool ActionKeyPressed{
       get{return actionKeyPressed;}
    }

@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
         if (timeLeft < 0)
         {
             Debug.Log("Timer Done");
-            // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            // Restart();
         }
 
         player.OnUpdate(io);
@@ -40,13 +40,22 @@ public class GameController : MonoBehaviour
         player.OnFixedUpdate(io);
     }
 
+    private void HandleRestarts(){
+        if(io.RestartKeyPressed){
+            Restart();
+        }
+    }
+
+    private void Restart(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     private void HandleNukeActivations()
     {
         foreach(Nuke nuke in nukes){
             Debug.Log("yeet");
             if(nuke.Activated){
                 Debug.Log("Nuke Activated");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
     }
