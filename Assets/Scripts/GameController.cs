@@ -10,9 +10,11 @@ public class GameController : MonoBehaviour
     [SerializeField] private PlayerController player;
     [SerializeField] private float timeLeft;
     [SerializeField] private Goal goal;
-
+    [SerializeField] private CameraFollow cam;
     private List<Nuke> nukes;
     private List<Switch> switches;
+
+    
    
 
     
@@ -34,6 +36,7 @@ public class GameController : MonoBehaviour
     void Update()
     {
         player.OnUpdate(io);
+        cam.OnUpdate(player.transform);
         HandleNukeActivations();
         HandleRestarts();
         HandleGoalReached();
