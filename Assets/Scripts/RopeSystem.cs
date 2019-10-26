@@ -52,6 +52,7 @@ public class RopeSystem : MonoBehaviour
         {
             crosshairSprite.enabled = false;
         }
+        HandleInput(aimDirection);
     }
      private void SetCrosshairPosition(float aimAngle)
     {
@@ -114,7 +115,7 @@ public class RopeSystem : MonoBehaviour
         ropeRenderer.positionCount = 2;
         ropeRenderer.SetPosition(0, transform.position);
         ropeRenderer.SetPosition(1, transform.position);
-        playerController.Clear();
+        ropePosition.Clear();
         ropeHingeAnchorSprite.enabled = false;
     }
 }

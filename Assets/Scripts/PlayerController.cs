@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public float jumpWindow;
     private float prevJumpVelocity;
 
+    public bool isSwinging = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();

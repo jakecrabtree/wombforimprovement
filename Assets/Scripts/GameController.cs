@@ -17,10 +17,10 @@ public class GameController : MonoBehaviour
     void Update()
     {
         timeLeft -= Time.deltaTime;
-        if (timeLeft < 0)
+        /*if (timeLeft < 0)
         {
             Application.LoadLevel(Application.loadedLevel);
-        }
+        }*/
 
         player.OnUpdate(io);
     }
