@@ -28,11 +28,13 @@ public class PlayerController : MonoBehaviour
     public Vector2 ropeHook;
     public float swingForce = 4f;
     private Animator _animator;
+    private SpriteRenderer _sprite;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _sprite = GetComponent<SpriteRenderer>();
     }
 
     public void OnUpdate(InputController io)
@@ -65,12 +67,11 @@ public class PlayerController : MonoBehaviour
         whatIsGround = LayerMask.GetMask("Ground");
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         moveInput = io.GetHorizontalDirection();
-        
 
         if (io.GetHorizontalDirection() < 0f || io.GetHorizontalDirection() > 0f)
         {
             //animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
-            //playerSprite.flipX = horizontalInput < 0f;
+            _sprite.flipX = moveInput < 0f;
             if (isSwinging)
             {
                 //animator.SetBool("IsSwinging", true);
