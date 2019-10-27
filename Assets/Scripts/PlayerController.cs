@@ -27,10 +27,12 @@ public class PlayerController : MonoBehaviour
     public bool isSwinging = false;
     public Vector2 ropeHook;
     public float swingForce = 4f;
+    private Animator _animator;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
     public void OnUpdate(InputController io)
@@ -39,7 +41,7 @@ public class PlayerController : MonoBehaviour
         {
             jumpTime = jumpWindow;
         }
-        if (isGrounded == true)
+        if (isGrounded)
         {
             extraJumps = extraJumpsValue;
         }
@@ -49,10 +51,11 @@ public class PlayerController : MonoBehaviour
             jumpTime = 0;
             extraJumps--;
         }
-        else if (io.ActionKeyPressed && extraJumps == 0 && isGrounded == true && !io.DownKeyHeld)
+        else if (io.ActionKeyPressed && extraJumps == 0 && isGrounded && !io.DownKeyHeld)
         {
             jumping = true;
             jumpTime = 0;
+            _animator.SetBool("isJumping", jumping);
         }
         prevJumpVelocity = rb.velocity.y;
     }
@@ -120,6 +123,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 jumping = false;
+                _animator.SetBool("isJumping", jumping);
             }
 
             if (jumping)
