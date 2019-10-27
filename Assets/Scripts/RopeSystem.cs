@@ -22,7 +22,7 @@ public class RopeSystem : MonoBehaviour
     public float climbSpeed = 3f;
     private bool isColliding;
 
-    private float maxRopeLength = 10f;
+    private float maxRopeLength = 100f;
     private float ropeLength;
     private float jointDist = 0f;
     private bool setDistance = true;
@@ -63,7 +63,7 @@ public class RopeSystem : MonoBehaviour
             // 3
             if (playerToCurrentNextHit)
             {
-                var colliderWithVertices = playerToCurrentNextHit.collider as PolygonCollider2D;
+                var colliderWithVertices = playerToCurrentNextHit.collider as CompositeCollider2D;
                 if (colliderWithVertices != null)
                 {
                     var closestPointToHit = GetClosestColliderPointFromRaycastHit(playerToCurrentNextHit, colliderWithVertices);
@@ -156,10 +156,18 @@ public class RopeSystem : MonoBehaviour
     }
 
     // 1
-    private Vector2 GetClosestColliderPointFromRaycastHit(RaycastHit2D hit, PolygonCollider2D polyCollider)
+    private Vector2 GetClosestColliderPointFromRaycastHit(RaycastHit2D hit, CompositeCollider2D polyCollider)
     {
         // 2
-        var distanceDictionary = polyCollider.points.ToDictionary<Vector2, float, Vector2>(
+        List<Vector2> verts = new List<Vector2>();
+
+        for (int i = 0; i < polyCollider.pathCount; i++)
+        {
+            Vector2[] pathVerts = new Vector2[polyCollider.GetPathPointCount(i)];
+            polyCollider.GetPath(i, pathVerts);
+            verts.AddRange(pathVerts);
+        }
+        var distanceDictionary = verts.ToDictionary<Vector2, float, Vector2>(
             position => Vector2.Distance(hit.point, polyCollider.transform.TransformPoint(position)),
             position => polyCollider.transform.TransformPoint(position));
 
@@ -178,6 +186,7 @@ public class RopeSystem : MonoBehaviour
         {
             ropeJoint.enabled = false;
             gameObject.GetComponent<Rigidbody2D>().simulated = false;
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             transform.position = Vector3.MoveTowards(transform.position, ropePositions.Last(), climbSpeed * Time.deltaTime);
  
