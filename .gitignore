@@ -61,3 +61,5 @@ sysinfo.txt
 crashlytics-build.properties
 .idea/.idea.wombforimprovement/.idea/indexLayout.xml
 .idea/.idea.wombforimprovement/.idea/contentModel.xml
+.DS_Store
+Assets/.DS_Store
