@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
         whatIsGround = LayerMask.GetMask("Ground");
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
         moveInput = io.GetHorizontalDirection();
+        _animator.SetBool("isWalking", Mathf.Abs(moveInput) > 0.0001f);
 
         if (io.GetHorizontalDirection() < 0f || io.GetHorizontalDirection() > 0f)
         {

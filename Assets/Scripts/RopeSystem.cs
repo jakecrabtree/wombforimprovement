@@ -189,15 +189,17 @@ public class RopeSystem : MonoBehaviour
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             transform.position = Vector3.MoveTowards(transform.position, ropePositions.Last(), climbSpeed * Time.deltaTime);
- 
-            //ropeJoint.distance -= Time.deltaTime * climbSpeed;
+            playerController.gameObject.GetComponent<Animator>().SetBool("isClimbing", true);
+            //ropeJoint.distance -= Time.deltaTime * true
         }
         if (Input.GetKeyUp("z"))
         {
             gameObject.GetComponent<BoxCollider2D>().enabled = true;
             gameObject.GetComponent<Rigidbody2D>().simulated = true;
+            playerController.gameObject.GetComponent<Animator>().SetBool("isClimbing", false);
+
         }
-        else if (Input.GetKey("x") == true)
+        else if (Input.GetKey("x"))
         {
             ropeJoint.distance += Time.deltaTime * climbSpeed;
         }
