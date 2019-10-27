@@ -678,6 +678,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3905195119439540003, guid: 550758e84ddcd48a7ba2890abb61a5c9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3905195119439540003, guid: 550758e84ddcd48a7ba2890abb61a5c9,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 3905195119439540003, guid: 550758e84ddcd48a7ba2890abb61a5c9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -18.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 3905195119439540003, guid: 550758e84ddcd48a7ba2890abb61a5c9,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.92
+      objectReference: {fileID: 0}
     - target: {fileID: 4092866419067380695, guid: 550758e84ddcd48a7ba2890abb61a5c9,
         type: 3}
       propertyPath: m_Tiles.Array.size
