@@ -465,7 +465,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 6549050678189927806}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1949781261}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb4f4458120fa674ea4cbd3f5b135229, type: 3}
@@ -837,6 +837,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3080a859473834c92a96ccdda72b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1949781261 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6549050677686769017, guid: 535da399b5cc93d4aa91de855dac719b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6549050678189927806}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1949781262
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949781261}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fa9e9830685e446a9b0839a67aae9a4b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &1974560073 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7517805979185293674, guid: 721dc367d0dab1d4fb95933a26c25647,
@@ -936,6 +961,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Timer
       objectReference: {fileID: 0}
+    - target: {fileID: 636425958023075465, guid: 40d5e39cd758ede4faa6b9a8865bf61f,
+        type: 3}
+      propertyPath: display
+      value: 
+      objectReference: {fileID: 343928797}
     - target: {fileID: 636425958023075478, guid: 40d5e39cd758ede4faa6b9a8865bf61f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -991,11 +1021,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 636425958023075465, guid: 40d5e39cd758ede4faa6b9a8865bf61f,
-        type: 3}
-      propertyPath: display
-      value: 
-      objectReference: {fileID: 343928797}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40d5e39cd758ede4faa6b9a8865bf61f, type: 3}
 --- !u!1001 &703526283384344545
@@ -1564,6 +1589,27 @@ PrefabInstance:
       propertyPath: ropeAnchor
       value: 
       objectReference: {fileID: 1974560073}
+    - target: {fileID: 6549050677686769012, guid: 535da399b5cc93d4aa91de855dac719b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3991283383595096070, guid: f1bbd082ec371234b985741e4307ed32,
+        type: 3}
+    - target: {fileID: 6549050677686769015, guid: 535da399b5cc93d4aa91de855dac719b,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 8.522448
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549050677686769015, guid: 535da399b5cc93d4aa91de855dac719b,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 7.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549050679188682936, guid: 535da399b5cc93d4aa91de855dac719b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 535da399b5cc93d4aa91de855dac719b, type: 3}
 --- !u!1001 &6592966606099772414
