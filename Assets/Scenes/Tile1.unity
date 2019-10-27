@@ -1495,6 +1495,11 @@ PrefabInstance:
       propertyPath: jumpForce
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6549050677686769010, guid: 535da399b5cc93d4aa91de855dac719b,
+        type: 3}
+      propertyPath: checkRadius
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6549050677686769008, guid: 535da399b5cc93d4aa91de855dac719b,
         type: 3}
       propertyPath: ropeAnchor
@@ -2270,7 +2275,7 @@ GameObject:
   - component: {fileID: 1947366886}
   m_Layer: 8
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
