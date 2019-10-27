@@ -1183,6 +1183,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 1010100258409747423, guid: 787d4fe8764d0544e8c6db30757736c2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1010100258409747392, guid: 787d4fe8764d0544e8c6db30757736c2,
         type: 3}
       propertyPath: m_LocalPosition.x
