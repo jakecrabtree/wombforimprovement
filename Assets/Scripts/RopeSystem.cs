@@ -22,7 +22,7 @@ public class RopeSystem : MonoBehaviour
     public float climbSpeed = 3f;
     private bool isColliding;
 
-    private float maxRopeLength = 5;
+    private float maxRopeLength = 10f;
     private float ropeLength;
     private float jointDist = 0f;
     private bool setDistance = true;
@@ -67,9 +67,12 @@ public class RopeSystem : MonoBehaviour
                 if (colliderWithVertices != null)
                 {
                     var closestPointToHit = GetClosestColliderPointFromRaycastHit(playerToCurrentNextHit, colliderWithVertices);
-                    ropePositions.Add(closestPointToHit);
-                    wrapPointsLookup.Add(closestPointToHit, 0);
-                    distanceSet = false;
+                    if(closestPointToHit != ropePositions.Last())
+                    {
+                        ropePositions.Add(closestPointToHit);
+                        wrapPointsLookup.Add(closestPointToHit, 0);
+                        distanceSet = false;
+                    }
                 }
             }
 
@@ -175,11 +178,14 @@ public class RopeSystem : MonoBehaviour
         {
             ropeJoint.enabled = false;
             gameObject.GetComponent<Rigidbody2D>().simulated = false;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
             transform.position = Vector3.MoveTowards(transform.position, ropePositions.Last(), climbSpeed * Time.deltaTime);
+ 
             //ropeJoint.distance -= Time.deltaTime * climbSpeed;
         }
         if (Input.GetKeyUp("z"))
         {
+            gameObject.GetComponent<BoxCollider2D>().enabled = true;
             gameObject.GetComponent<Rigidbody2D>().simulated = true;
         }
         else if (Input.GetKey("x") == true)
@@ -234,13 +240,13 @@ public class RopeSystem : MonoBehaviour
 
         if (playerAngle < hingeAngle)
         {
+
             // 1
             if (wrapPointsLookup[hingePosition] == 1)
             {
                 UnwrapRopePosition(anchorIndex, hingeIndex);
                 return;
             }
-
             // 2
             wrapPointsLookup[hingePosition] = -1;
         }
@@ -255,6 +261,12 @@ public class RopeSystem : MonoBehaviour
 
             // 4
             wrapPointsLookup[hingePosition] = 1;
+        }
+
+        if ((playerPosition - ropePositions.Last()).magnitude <= .01f)
+        {
+            UnwrapRopePosition(anchorIndex, hingeIndex);
+            return;
         }
     }
 
