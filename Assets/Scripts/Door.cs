@@ -7,6 +7,7 @@ public class Door : MonoBehaviour
 {
     private bool locked = true;
     private SpriteRenderer _sprite;
+    public Sprite open;
 
     private void Start()
     {
@@ -18,7 +19,7 @@ public class Door : MonoBehaviour
             locked = false;
             Debug.Log("Door unlocked");
             Destroy(GetComponent<BoxCollider2D>());
-            _sprite.sprite = Resources.Load<Sprite>("DoorOpen");
+            _sprite.sprite = open;
         }
     }
 }
